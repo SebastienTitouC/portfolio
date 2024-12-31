@@ -4,35 +4,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Fonts -->
+  <!-- fontshare -->
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+  <!-- Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ephesis&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <title>Portfolio</title>
 </head>
 
 <body>
-  <header class="container">
-    <h3>
-      Header
-    </h3>
+  <header class="container header">
+    <div class="hero__text-box">
+      <h1>
+        <span class="ephesis-regular">.: ST C :.</span>
+      </h1>
+    </div>
+
+    <nav class="header__nav">
+      <ul class="header__menu">
+        <li>
+          <a class="header__link" href="#about">A propos</a>
+        </li>
+        <li>
+          <a class="header__link" href="#career">Parcours</a>
+        </li>
+        <li>
+          <a class="header__link" href="#projects">Projets</a>
+        </li>
+        <li>
+          <a class="header__link" href="#services">Services</a>
+        </li>
+        <li class="header__line"></li>
+        <li>
+          <a class="header__link" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile navigation -->
+    <div class="header-mobile__menuIcon">
+      <div class="header-mobile__bar header-mobile__bar1"></div>
+      <div class="header-mobile__bar header-mobile__bar2"></div>
+      <div class="header-mobile__bar header-mobile__bar3"></div>
+    </div>
+
+    <!-- End of mobile nav -->
   </header>
 
+  <div class="header-mobile hidden">
+    <nav class="header-mobile__nav">
+      <ul class="header-mobile__menu">
+        <li>
+          <a class="header-mobile__link" href="#about">A propos</a>
+        </li>
+        <li>
+          <a class="header-mobile__link" href="#career">Parcours</a>
+        </li>
+        <li>
+          <a class="header-mobile__link" href="#projects">Projets</a>
+        </li>
+        <li>
+          <a class="header-mobile__link" href="#services">Services</a>
+        </li>
+        <li class="header-mobile__line"></li>
+        <li>
+          <a class="header-mobile__link" href="#contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
   <main>
-    <section class="container">
-      <h1>New section 1</h1>
+    <section id="about" class="section container">
+      <h1>New section About</h1>
+
     </section>
-    <section class="section container">
-      <h1>New section 2</h1>
+    <section id="career" class="section container">
+      <h1>New section Career</h1>
     </section>
-    <section class="section container">
-      <h1>New section 3</h1>
+    <section id="projects" class="section container">
+      <h1>New section Projects</h1>
     </section>
-    <section class="section container">
-      <h1>New section 4</h1>
+    <section id="services" class="section container">
+      <h1>New section Services</h1>
+    </section>
+    <section id="contact" class="section container">
+      <h1>New section Contact</h1>
     </section>
   </main>
 
   <footer class="container">
     <h3>Footer</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ab deleniti incidunt et aperiam. Non odio illum
+      totam magnam, explicabo iure nulla nam voluptatum consectetur eligendi aliquam veritatis blanditiis rerum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ab deleniti incidunt et aperiam. Non odio illum
+      totam magnam, explicabo iure nulla nam voluptatum consectetur eligendi aliquam veritatis blanditiis rerum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque ab deleniti incidunt et aperiam. Non odio illum
+      totam magnam, explicabo iure nulla nam voluptatum consectetur eligendi aliquam veritatis blanditiis rerum.</p>
   </footer>
 
   <script type="module" src="/src/main.js"></script>
