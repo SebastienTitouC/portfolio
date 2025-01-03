@@ -7,6 +7,7 @@
     --clr-slate950: #020617;
     --clr-red600: #dc2626;
     --clr-red800: #991b1b;
+    --clr-purple: #9333ea;
     --clr-orange400: #fb923c;
     --clr-orange600: #ea580c;
     --clr-emerald: #059669;
@@ -76,11 +77,11 @@ body::before {
 }
 
 a {
-    color: var(--clr-red);
+    color: var(--clr-red600);
 }
 
 strong {
-    color: var(--clr-emerald);
+    color: var(--clr-sky);
 }
 
 img,

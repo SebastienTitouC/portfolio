@@ -14,7 +14,21 @@
     border: 1px solid var(--clr-transparent-grey);
 }
 
-.hero__text-box {
+.header__hidden {
+    top: -44px;
+    border: 1px solid #eeeeee3d;
+}
+
+.header__hidden::before {
+    content: "Menu";
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    font-size: var(--size-xs);
+    color: var(--clr-light);
+}
+
+.header__logo {
     font-size: var(--size-xs);
 }
 
@@ -141,7 +155,7 @@
 }
 
 @media (min-width: 640px) {
-    .hero__text-box {
+    .header__logo {
         font-size: var(--size-base);
     }
 
@@ -154,7 +168,7 @@
 @media (min-width: 768px) {}
 
 @media (min-width: 1024px) {
-    .hero__text-box {
+    .header__logo {
         font-size: var(--size-lg);
     }
 
@@ -168,7 +182,7 @@
 }
 
 @media (min-width: 1280px) {
-    .hero__text-box {
+    .header__logo {
         font-size: var(--size-xl);
     }
 

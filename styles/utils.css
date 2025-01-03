@@ -51,8 +51,22 @@
 }
 
 .section {
-    margin-top: 5rem;
-    height: 60vh;
+    padding-top: 5rem;
+}
+
+.utils__text-box h1 {
+    background-image: linear-gradient(to right,
+            rgb(123, 231, 40),
+            #f3265f,
+            #4ade80,
+            #7f40ac,
+            #7be728,
+            #84cc16);
+    background-size: 200% auto;
+    animation: gradientAnimation 5s linear infinite;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
 }
 
 /* ----- Media query  ----- */
@@ -88,7 +102,7 @@
     }
 
     .section {
-        margin-top: 10rem;
+        padding-top: 10rem;
     }
 }
 
