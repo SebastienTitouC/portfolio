@@ -3,7 +3,7 @@
     flex-direction: column;
     position: relative;
     overflow: hidden;
-    min-height: 80vh;
+    min-height: 90vh;
 }
 
 .hero__title_description {
