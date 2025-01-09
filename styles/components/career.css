@@ -102,6 +102,7 @@
 }
 
 .career__card_img {
+    aspect-ratio: 1;
     width: 4em;
     height: 4em;
 }
