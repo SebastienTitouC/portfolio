@@ -400,11 +400,39 @@
       </div>
     </section>
 
-    <section id="services" class="section container">
-      <h1>New section Services</h1>
-    </section>
-    <section id="contact" class="section container">
-      <h1>New section Contact</h1>
+    <section id="contact" class="section">
+      <div class="contact__container">
+        <h1 class="contact__title">Contact</h1>
+        <p class="contact__hook">Je suis actuellement en construction de mon entreprise, mais n'hésitez pas à me
+          contacter.
+          Précisez votre projet, vos envies, et vos délais. Nous trouverons ensemble une solution adaptée.
+        </p>
+
+        <div class="contact_style-wrapper">
+          <div class="contact__style"></div>
+          <div class="contact__syle-form">
+            <form action="" method="get" class="contact__contact-form">
+              <div class="contact__name">
+                <label class="contact__contact-label" for="name">Votre nom* </label>
+                <input class="contact__contact-input" type="text" name="name" id="name" placeholder="Nom" required />
+              </div>
+              <div class="contact__mail">
+                <label class="contact__contact-label" for="email">Votre adresse email* </label>
+                <input class="contact__contact-input" type="email" name="email" id="email" placeholder="Email"
+                  required />
+              </div>
+              <div class="contact__message">
+                <label class="contact__contact-label" for="message">Votre message* </label>
+                <textarea class="contact__contact-input" name="message" id="message" rows="8"
+                  placeholder="Message"></textarea>
+              </div>
+              <div class="contact__send">
+                <input class="contact__send-input" type="submit" value="Envoyer !" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 

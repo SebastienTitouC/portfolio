@@ -334,7 +334,7 @@
 @media (min-width: 1024px) {
     .projects__card {
         width: 480px;
-        height: 580px;
+        height: 640px;
     }
 
     .projects__card__img {

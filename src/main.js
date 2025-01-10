@@ -6,6 +6,7 @@ import '../styles/components/social-networks.css'
 import '../styles/components/hero.css'
 import '../styles/components/career.css'
 import '../styles/components/projects.css'
+import '../styles/components/contact.css'
 import '../styles/utils.css' // Should be the last
 
 import mobileNav from './utils/mobile-nav';
