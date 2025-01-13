@@ -14,11 +14,12 @@ import '../styles/utils.css' // Should be the last
 import mobileNav from './utils/mobile-nav';
 import writeSubFunction from './utils/typewriter'
 import { changeCardVisibility, addDelayToSkill } from './utils/projects'
-import { changeTheme, infoThemeMode } from './utils/dark-mode'
+/* import { changeTheme, infoThemeMode } from './utils/dark-mode' */
+import changeTheme from './utils/dark-mode'
 
 mobileNav();
 writeSubFunction();
 changeCardVisibility();
 addDelayToSkill();
 changeTheme();
-infoThemeMode();
+/* infoThemeMode(); */

@@ -61,4 +61,5 @@ const infoThemeMode = () => {
     }
 }
 
-export { changeTheme, infoThemeMode };
+/* export { changeTheme, infoThemeMode }; */
+export default changeTheme;
