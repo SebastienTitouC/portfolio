@@ -126,8 +126,10 @@ body::before {
     padding-bottom: 2rem;
 }
 
-a {
+a,
+em {
     color: var(--clr-red600);
+    font-style: normal;
 }
 
 strong {

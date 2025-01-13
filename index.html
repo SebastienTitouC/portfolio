@@ -4,6 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portfolio développeur ingénieur logiciel indépendant à Toulouse/Tournefeuille. Spécialisé en développement web, mobile, et solutions sur mesure pour entreprises. Découvrez mes projets, compétences et services." />
+  <meta name="keywords"
+    content="développeur logiciel, ingénieur logiciel, freelance, Toulouse, Tournefeuille, développement web, développement mobile, solutions sur mesure, application mobile, site web, développement sur mesure" />
+  <meta name="author" content="STC" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Portfolio Développeur Ingénieur Logiciel Indépendant | Toulouse/Tournefeuille" />
+  <meta property="og:description"
+    content="Découvrez le portfolio d'un développeur ingénieur logiciel indépendant à Toulouse/Tournefeuille, expert en développement web et mobile. Consultez mes projets et services personnalisés." />
   <!-- Fonts -->
   <!-- fontshare -->
   <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
@@ -39,7 +49,7 @@
         </li> -->
         <li class="header__line"></li>
         <li>
-          <button id="theme-toggle" class="header__sun">
+          <button id="theme-toggle" class="header__sun" aria-label="Changer de thème">
             <svg style="display: block; width: 30px; height: auto;" xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -80,7 +90,7 @@
         </li> -->
         <li class="header-mobile__line"></li>
         <li>
-          <button id="theme-toggle" class="header__mobile__sun">
+          <button id="theme-toggle" class="header__mobile__sun" aria-label="Changer de thème">
             <svg style="display: block; width: 30px; height: auto;" xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -105,10 +115,16 @@
         <p class="hero__function hero__function_typewriterJS">Je suis ingénieur en développement logiciel.</p>
         <span class="cursor"></span>
       </div>
-      <img loading="lazy" class="hero__img" src="png/portrait.png" alt="Photo de présentation">
+      <picture>
+        <!-- Format WebP -->
+        <source srcset="webp/portrait.webp" type="image/webp">
+        <!-- Pour les navigateurs ne supportant pas WebP -->
+        <img class="hero__img" src="png/portrait.png" alt="Photo de présentation" width="433" height="577">
+      </picture>
 
       <div class="hero__social_network">
-        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
+        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')"
+          aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
             <path clip-rule="evenodd"
@@ -116,7 +132,8 @@
               fill-rule="evenodd" fill="currentColor"></path>
           </svg>
         </button>
-        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
+        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')"
+          aria-label="WhatsApp">
           <svg viewBox="0 0 24 24" fill="none" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
             <path clip-rule="evenodd"
@@ -128,7 +145,8 @@
           </svg>
         </button>
 
-        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
+        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')"
+          aria-label="Twitter (X)">
           <svg viewBox="0 0 24 24" fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
             <path clip-rule="evenodd"
@@ -137,7 +155,8 @@
           </svg>
         </button>
 
-        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
+        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')"
+          aria-label="Youtube">
           <svg viewBox="0 0 24 24" fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
             <path clip-rule="evenodd"
@@ -146,7 +165,8 @@
           </svg>
         </button>
 
-        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
+        <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')"
+          aria-label="Github">
           <svg viewBox="0 0 24 24" fill="currentColor" height="24" width="24" xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true">
             <path clip-rule="evenodd"
@@ -157,13 +177,14 @@
 
       </div>
       <p class="hero__description">
-        Après plusieurs années d'expérience chez <a>Thales</a>, où j'ai travaillé sur des <a>systèmes complexes</a> dans
-        les secteurs aéronautique et militaire, j'ai décidé de mettre <a>mon expertise</a> au service des petites
+        Après plusieurs années d'expérience chez <em>Thales</em>, où j'ai travaillé sur des <em>systèmes complexes</em>
+        dans
+        les secteurs aéronautique et militaire, j'ai décidé de mettre <em>mon expertise</em> au service des petites
         entreprises et des indépendants.
         <br>
         <br>
         Mon objectif est de créer des solutions innovantes qui facilitent la vie des utilisateurs, tout en répondant aux
-        enjeux spécifiques de chaque <a>projet</a>.
+        enjeux spécifiques de chaque <em>projet</em>.
       </p>
     </section>
     <section id="career" class="section container">
@@ -183,7 +204,8 @@
             <!-- Format WebP -->
             <source srcset="webp/0.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/0.png" alt="Chapeau de diplômé pour le Baccalauréat">
+            <img class="career__card_img" loading="lazy" src="png/0.png" alt="Chapeau de diplômé pour le Baccalauréat"
+              width="200" height="200">
           </picture>
         </div>
 
@@ -198,9 +220,10 @@
 
           <picture class="career__card_img">
             <!-- Format WebP -->
-            <source data-srcset="webp/1.webp" type="image/webp">
+            <source srcset="webp/1.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/1.png" alt="CChapeau de diplômé pour le DUT">
+            <img class="career__card_img" loading="lazy" src="png/1.png" alt="CChapeau de diplômé pour le DUT"
+              width="200" height="200">
           </picture>
         </div>
 
@@ -217,7 +240,8 @@
             <!-- Format WebP -->
             <source srcset="webp/2.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/2.png" alt="Chapeau de diplômé pour la Licence">
+            <img class="career__card_img" loading="lazy" src="png/2.png" alt="Chapeau de diplômé pour la Licence"
+              width="200" height="200">
           </picture>
         </div>
 
@@ -234,7 +258,8 @@
             <!-- Format WebP -->
             <source srcset="webp/3.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/3.png" alt="Chapeau de diplômé pour le diplôme d'ingénieur">
+            <img class="career__card_img" loading="lazy" src="png/3.png"
+              alt="Chapeau de diplômé pour le diplôme d'ingénieur" width="200" height="200">
           </picture>
         </div>
         <!-- Pro -->
@@ -251,7 +276,8 @@
             <!-- Format WebP -->
             <source srcset="webp/4.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/4.png" alt="Garçon en costume qui court au travail">
+            <img class="career__card_img" loading="lazy" src="png/4.png" alt="Garçon en costume qui court au travail"
+              width="200" height="200">
           </picture>
         </div>
         <div class="career__year-wrap">
@@ -267,7 +293,8 @@
             <!-- Format WebP -->
             <source srcset="webp/5.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/5.png" alt="Homme qui travaille sur un ordinateur">
+            <img class="career__card_img" loading="lazy" src="../png/5.png" alt="Homme qui travaille sur un ordinateur"
+              width="200" height="200">
           </picture>
         </div>
         <div class="career__year-wrap">
@@ -282,7 +309,8 @@
             <!-- Format WebP -->
             <source srcset="webp/6.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img loading="lazy" src="png/6.png" alt="Garçon en costume de super-héro">
+            <img class="career__card_img" loading="lazy" src="png/6.png" alt="Garçon en costume de super-héro"
+              width="200" height="200">
           </picture>
         </div>
       </div>
@@ -294,11 +322,16 @@
           <!-- Project n°1 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" loading="lazy" src="png/portfolio.png"
-                alt="Capture d'écran du portfolio">
+              <picture class="projects__card__img">
+                <!-- Format WebP -->
+                <source srcset="webp/portfolio.webp" type="image/webp">
+                <!-- Pour les navigateurs ne supportant pas WebP -->
+                <img class="projects__card__img" loading="lazy" src="png/portfolio.png"
+                  alt="Capture d'écran du portfolio" width="200" height="200">
+              </picture>
               <div class="projects__card__descr-wrapper">
                 <h1 class="projects__card__title">Site web</h1>
-                <h3 class="projects__card__hook">Entrez dans un univers où chaque détail compte.</h3>
+                <h2 class="projects__card__hook">Entrez dans un univers où chaque détail compte.</h2>
                 <p class="projects__card__description">
                   Découvrez une plateforme qui s’adapte avec brio à toutes vos envies et à tous vos appareils :
                   mobile, tablette, ou ordinateur. <br>
@@ -316,11 +349,17 @@
           <!-- Project n°2 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" loading="lazy" src="png/Gest_Petsitter.png"
-                alt="Capture d'écran du portfolio" style="filter: grayscale(30%);">
+              <picture class="projects__card__img">
+                <!-- Format WebP -->
+                <source srcset="webp/Gest_Petsitter.webp" type="image/webp">
+                <!-- Pour les navigateurs ne supportant pas WebP -->
+                <img class="projects__card__img" loading="lazy" src="png/Gest_Petsitter.png"
+                  alt="Capture d'écran du logiciel de gestion " width="200" height="200">
+              </picture>
+
               <div class=" projects__card__descr-wrapper">
                 <h1 class="projects__card__title">Logiciel de gestion</h1>
-                <h3 class="projects__card__hook">Toute votre entreprise sur une plateforme.</h3>
+                <h2 class="projects__card__hook">Toute votre entreprise sur une plateforme.</h2>
                 <p class="projects__card__description">
                   Gérer vos clients, créer devis/factures en quelques clics. <br>
                   Un tableau de bord intuitif vous aide a visualiser vos performances et a prendre
@@ -336,10 +375,16 @@
           <!-- A suivre : Project n°3 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" loading="lazy" src="webp/wip.webp" alt="Capture d'écran du portfolio">
+              <picture class="projects__card__img">
+                <!-- Format WebP -->
+                <source srcset="webp/wip.webp" type="image/webp">
+                <!-- Pour les navigateurs ne supportant pas WebP -->
+                <img class="projects__card__img" loading="lazy" src="png/wip.png" alt="Travail en cours"
+                  style="object-position: 50% 50%;" width="200" height="200">
+              </picture>
               <div class="projects__card__descr-wrapper">
                 <h1 class="projects__card__title">A suivre ...</h1>
-                <h3 class="projects__card__hook">De nombreux projets arrivent.</h3>
+                <h2 class="projects__card__hook">De nombreux projets arrivent.</h2>
                 <p class="projects__card__description">
                   Et pourquoi pas le votre ?
                   N'hésitez pas à me contacter.
@@ -356,62 +401,72 @@
       <div class="projects__skills-wrapper">
         <div class="projects__skills-container">
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/html-5.svg" alt="Logo de HTML">
+            <img loading="lazy" class="projects__skill-img" src="logo/html-5.svg" alt="Logo de HTML" width="100"
+              height="100">
             <p class="utils__animation__wiggle">HTML</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/css-3.svg" alt="Logo de CSS">
+            <img loading="lazy" class="projects__skill-img" src="logo/css-3.svg" alt="Logo de CSS" width="100"
+              height="100">
             <p class="utils__animation__wiggle">CSS</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/javascript.svg" alt="Logo de CSS">
+            <img loading="lazy" class="projects__skill-img" src="logo/javascript.svg" alt="Logo de CSS" width="100"
+              height="100">
             <p class="utils__animation__wiggle">JavaScript</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/typescript.svg " alt="Logo of TypeScript">
+            <img loading="lazy" class="projects__skill-img" src="logo/typescript.svg " alt="Logo of TypeScript"
+              width="100" height="100">
             <p class="utils__animation__wiggle">TypeScript</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/python.svg " alt="Logo of Python">
+            <img loading="lazy" class="projects__skill-img" src="logo/python.svg " alt="Logo of Python" width="100"
+              height="100">
             <p class="utils__animation__wiggle">Python</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/c-1.svg" alt="Logo of C">
+            <img loading="lazy" class="projects__skill-img" src="logo/c-1.svg" alt="Logo of C" width="100" height="100">
             <p class="utils__animation__wiggle">C</p>
           </div>
           <div class="projects__skill">
-            <img loading="lazy" class="projects__skill-img" src="logo/c.svg " alt="Logo of C++">
+            <img loading="lazy" class="projects__skill-img" src="logo/c.svg " alt="Logo of C++" width="100"
+              height="100">
             <p class="utils__animation__wiggle">C++</p>
           </div>
         </div>
 
         <div class="projects__skills-container">
           <div class="projects__skill2">
-            <img loading="lazy" class="projects__skill-img" src="logo/nodejs.svg " alt="Logo of NodeJS">
+            <img loading="lazy" class="projects__skill-img" src="logo/nodejs.svg " alt="Logo of NodeJS" width="100"
+              height="100">
             <p class="utils__animation__wiggle">NodeJS</p>
           </div>
           <!--       <div class="projects__skill2">
-        <img loading="lazy" class="projects__skill-img" src="logo/angular.svg " alt="Logo of Angular">
+        <img loading="lazy" class="projects__skill-img" src="logo/angular.svg " alt="Logo of Angular" width="100" height="100">
         <p class="utils__animation__wiggle">Angular</p>
       </div>
       <div class="projects__skill2">
-        <img loading="lazy" class="projects__skill-img" src="logo/vue.svg" alt="Logo of Vue">
+        <img loading="lazy" class="projects__skill-img" src="logo/vue.svg" alt="Logo of Vue" width="100" height="100">
         <p class="utils__animation__wiggle">Vue</p>
       </div>
       <div class="projects__skill2">
-        <img loading="lazy" class="projects__skill-img" src="logo/react.svg " alt="Logo of React">
+        <img loading="lazy" class="projects__skill-img" src="logo/react.svg " alt="Logo of React" width="100" height="100">
         <p class="utils__animation__wiggle">React</p>
       </div> -->
           <div class="projects__skill2">
-            <img loading="lazy" class="projects__skill-img" src="logo/vite.svg " alt="Logo of Vite">
+            <img loading="lazy" class="projects__skill-img" src="logo/vite.svg " alt="Logo of Vite" width="100"
+              height="100">
             <p class="utils__animation__wiggle">Vite</p>
           </div>
           <div class="projects__skill2">
-            <img loading="lazy" class="projects__skill-img" src="logo/django.svg " alt="Logo of DJango">
+            <img loading="lazy" class="projects__skill-img" src="logo/django.svg " alt="Logo of DJango" width="100"
+              height="100">
             <p class="utils__animation__wiggle">DJango</p>
           </div>
           <div class="projects__skill2">
-            <img loading="lazy" class="projects__skill-img" src="logo/git.svg " alt="Logo of Git">
+            <img loading="lazy" class="projects__skill-img" src="logo/git.svg " alt="Logo of Git" width="100"
+              height="100">
             <p class="utils__animation__wiggle">Git</p>
           </div>
         </div>
@@ -455,7 +510,7 @@
   </main>
 
   <footer class="footer__container">
-    <a href="#hero">
+    <a href="#hero" aria-label="Retour au début">
       <svg class="footer__arrow" width="100px" height="100px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M18.2929 15.2893C18.6834 14.8988 18.6834 14.2656 18.2929 13.8751L13.4007 8.98766C12.6195 8.20726 11.3537 8.20757 10.5729 8.98835L5.68257 13.8787C5.29205 14.2692 5.29205 14.9024 5.68257 15.2929C6.0731 15.6835 6.70626 15.6835 7.09679 15.2929L11.2824 11.1073C11.673 10.7168 12.3061 10.7168 12.6966 11.1073L16.8787 15.2893C17.2692 15.6798 17.9024 15.6798 18.2929 15.2893Z"

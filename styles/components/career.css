@@ -118,9 +118,8 @@
 }
 
 .career__card_img {
-    aspect-ratio: 1;
     width: 4em;
-    height: 4em;
+    height: auto;
 }
 
 /* ----- Media query  ----- */
@@ -160,7 +159,6 @@
 
     .career__card_img {
         width: 4.5em;
-        height: 4.5em;
     }
 }
 
@@ -246,7 +244,6 @@
 
     .career__card_img {
         width: 5em;
-        height: 5em;
         filter: none;
     }
 }
