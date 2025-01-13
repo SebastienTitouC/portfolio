@@ -34,10 +34,19 @@
         <li>
           <a class="header__link" href="#projects">Projets</a>
         </li>
-        <li>
+        <!-- <li>
           <a class="header__link" href="#services">Services</a>
-        </li>
+        </li> -->
         <li class="header__line"></li>
+        <li>
+          <button id="theme-toggle" class="header__sun">
+            <svg style="display: block; width: 30px; height: auto;" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+            </svg>
+          </button>
+        </li>
         <li>
           <a class="header__link" href="#contact">Contact</a>
         </li>
@@ -66,10 +75,19 @@
         <li>
           <a class="header-mobile__link" href="#projects">Projets</a>
         </li>
-        <li>
+        <!-- <li>
           <a class="header-mobile__link" href="#services">Services</a>
-        </li>
+        </li> -->
         <li class="header-mobile__line"></li>
+        <li>
+          <button id="theme-toggle" class="header__mobile__sun">
+            <svg style="display: block; width: 30px; height: auto;" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
+            </svg>
+          </button>
+        </li>
         <li>
           <a class="header-mobile__link" href="#contact">Contact</a>
         </li>
@@ -87,7 +105,7 @@
         <p class="hero__function hero__function_typewriterJS">Je suis ingénieur en développement logiciel.</p>
         <span class="cursor"></span>
       </div>
-      <img class="hero__img" src="portrait.png" alt="Photo de présentation">
+      <img loading="lazy" class="hero__img" src="png/portrait.png" alt="Photo de présentation">
 
       <div class="hero__social_network">
         <button class="social__button hidden" onclick="alert('J\'ai pas tout ça, mais ça fait pro ! :D')">
@@ -154,7 +172,7 @@
         <!-- School -->
         <div class="career__year-wrap">
           <div class="career__year">
-            <span id="career__year_solo">2010</span>
+            <span class="career__year_solo">2010</span>
 
           </div>
         </div>
@@ -165,7 +183,7 @@
             <!-- Format WebP -->
             <source srcset="webp/0.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/0.png" alt="Chapeau de diplômé pour le Baccalauréat">
+            <img loading="lazy" src="png/0.png" alt="Chapeau de diplômé pour le Baccalauréat">
           </picture>
         </div>
 
@@ -180,9 +198,9 @@
 
           <picture class="career__card_img">
             <!-- Format WebP -->
-            <source srcset="webp/1.webp" type="image/webp">
+            <source data-srcset="webp/1.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/1.png" alt="CChapeau de diplômé pour le DUT">
+            <img loading="lazy" src="png/1.png" alt="CChapeau de diplômé pour le DUT">
           </picture>
         </div>
 
@@ -199,7 +217,7 @@
             <!-- Format WebP -->
             <source srcset="webp/2.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/2.png" alt="Chapeau de diplômé pour la Licence">
+            <img loading="lazy" src="png/2.png" alt="Chapeau de diplômé pour la Licence">
           </picture>
         </div>
 
@@ -216,7 +234,7 @@
             <!-- Format WebP -->
             <source srcset="webp/3.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/3.png" alt="Chapeau de diplômé pour le diplôme d'ingénieur">
+            <img loading="lazy" src="png/3.png" alt="Chapeau de diplômé pour le diplôme d'ingénieur">
           </picture>
         </div>
         <!-- Pro -->
@@ -233,7 +251,7 @@
             <!-- Format WebP -->
             <source srcset="webp/4.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/4.png" alt="Garçon en costume qui court au travail">
+            <img loading="lazy" src="png/4.png" alt="Garçon en costume qui court au travail">
           </picture>
         </div>
         <div class="career__year-wrap">
@@ -249,12 +267,12 @@
             <!-- Format WebP -->
             <source srcset="webp/5.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/5.png" alt="Homme qui travaille sur un ordinateur">
+            <img loading="lazy" src="png/5.png" alt="Homme qui travaille sur un ordinateur">
           </picture>
         </div>
         <div class="career__year-wrap">
           <div class="career__year">
-            <span id="career__year_solo">2024</span>
+            <span class="career__year_solo">2024</span>
           </div>
         </div>
         <div class="career__card">
@@ -264,7 +282,7 @@
             <!-- Format WebP -->
             <source srcset="webp/6.webp" type="image/webp">
             <!-- Pour les navigateurs ne supportant pas WebP -->
-            <img src="png/6.png" alt="Garçon en costume de super-héro">
+            <img loading="lazy" src="png/6.png" alt="Garçon en costume de super-héro">
           </picture>
         </div>
       </div>
@@ -276,8 +294,8 @@
           <!-- Project n°1 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" src="png/portfolio.png" alt="Capture d'écran du portfolio"
-                style="filter: brightness(1.4);">
+              <img class="projects__card__img" loading="lazy" src="png/portfolio.png"
+                alt="Capture d'écran du portfolio">
               <div class="projects__card__descr-wrapper">
                 <h1 class="projects__card__title">Site web</h1>
                 <h3 class="projects__card__hook">Entrez dans un univers où chaque détail compte.</h3>
@@ -298,8 +316,8 @@
           <!-- Project n°2 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" src="png/Gest_Petsitter.png" alt="Capture d'écran du portfolio"
-                style="filter: grayscale(30%);">
+              <img class="projects__card__img" loading="lazy" src="png/Gest_Petsitter.png"
+                alt="Capture d'écran du portfolio" style="filter: grayscale(30%);">
               <div class=" projects__card__descr-wrapper">
                 <h1 class="projects__card__title">Logiciel de gestion</h1>
                 <h3 class="projects__card__hook">Toute votre entreprise sur une plateforme.</h3>
@@ -318,7 +336,7 @@
           <!-- A suivre : Project n°3 -->
           <li class="projects__carousel-item">
             <div class="projects__card">
-              <img class="projects__card__img" src="webp/wip.webp" alt="Capture d'écran du portfolio">
+              <img class="projects__card__img" loading="lazy" src="webp/wip.webp" alt="Capture d'écran du portfolio">
               <div class="projects__card__descr-wrapper">
                 <h1 class="projects__card__title">A suivre ...</h1>
                 <h3 class="projects__card__hook">De nombreux projets arrivent.</h3>
@@ -338,62 +356,62 @@
       <div class="projects__skills-wrapper">
         <div class="projects__skills-container">
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/html-5.svg" alt="Logo de HTML">
+            <img loading="lazy" class="projects__skill-img" src="logo/html-5.svg" alt="Logo de HTML">
             <p class="utils__animation__wiggle">HTML</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/css-3.svg" alt="Logo de CSS">
+            <img loading="lazy" class="projects__skill-img" src="logo/css-3.svg" alt="Logo de CSS">
             <p class="utils__animation__wiggle">CSS</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/javascript.svg" alt="Logo de CSS">
+            <img loading="lazy" class="projects__skill-img" src="logo/javascript.svg" alt="Logo de CSS">
             <p class="utils__animation__wiggle">JavaScript</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/typescript.svg " alt="Logo of TypeScript">
+            <img loading="lazy" class="projects__skill-img" src="logo/typescript.svg " alt="Logo of TypeScript">
             <p class="utils__animation__wiggle">TypeScript</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/python.svg " alt="Logo of Python">
+            <img loading="lazy" class="projects__skill-img" src="logo/python.svg " alt="Logo of Python">
             <p class="utils__animation__wiggle">Python</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/c-1.svg" alt="Logo of C">
+            <img loading="lazy" class="projects__skill-img" src="logo/c-1.svg" alt="Logo of C">
             <p class="utils__animation__wiggle">C</p>
           </div>
           <div class="projects__skill">
-            <img class="projects__skill-img" src="logo/c.svg " alt="Logo of C++">
+            <img loading="lazy" class="projects__skill-img" src="logo/c.svg " alt="Logo of C++">
             <p class="utils__animation__wiggle">C++</p>
           </div>
         </div>
 
         <div class="projects__skills-container">
           <div class="projects__skill2">
-            <img class="projects__skill-img" src="logo/nodejs.svg " alt="Logo of NodeJS">
+            <img loading="lazy" class="projects__skill-img" src="logo/nodejs.svg " alt="Logo of NodeJS">
             <p class="utils__animation__wiggle">NodeJS</p>
           </div>
           <!--       <div class="projects__skill2">
-        <img class="projects__skill-img" src="logo/angular.svg " alt="Logo of Angular">
+        <img loading="lazy" class="projects__skill-img" src="logo/angular.svg " alt="Logo of Angular">
         <p class="utils__animation__wiggle">Angular</p>
       </div>
       <div class="projects__skill2">
-        <img class="projects__skill-img" src="logo/vue.svg" alt="Logo of Vue">
+        <img loading="lazy" class="projects__skill-img" src="logo/vue.svg" alt="Logo of Vue">
         <p class="utils__animation__wiggle">Vue</p>
       </div>
       <div class="projects__skill2">
-        <img class="projects__skill-img" src="logo/react.svg " alt="Logo of React">
+        <img loading="lazy" class="projects__skill-img" src="logo/react.svg " alt="Logo of React">
         <p class="utils__animation__wiggle">React</p>
       </div> -->
           <div class="projects__skill2">
-            <img class="projects__skill-img" src="logo/vite.svg " alt="Logo of Vite">
+            <img loading="lazy" class="projects__skill-img" src="logo/vite.svg " alt="Logo of Vite">
             <p class="utils__animation__wiggle">Vite</p>
           </div>
           <div class="projects__skill2">
-            <img class="projects__skill-img" src="logo/django.svg " alt="Logo of DJango">
+            <img loading="lazy" class="projects__skill-img" src="logo/django.svg " alt="Logo of DJango">
             <p class="utils__animation__wiggle">DJango</p>
           </div>
           <div class="projects__skill2">
-            <img class="projects__skill-img" src="logo/git.svg " alt="Logo of Git">
+            <img loading="lazy" class="projects__skill-img" src="logo/git.svg " alt="Logo of Git">
             <p class="utils__animation__wiggle">Git</p>
           </div>
         </div>
@@ -411,7 +429,7 @@
         <div class="contact_style-wrapper">
           <div class="contact__style"></div>
           <div class="contact__syle-form">
-            <form action="" method="get" class="contact__contact-form">
+            <form action="https://formspree.io/f/xnnnwvod" method="POST" class="contact__contact-form">
               <div class="contact__name">
                 <label class="contact__contact-label" for="name">Votre nom * </label>
                 <input class="contact__contact-input" type="text" name="name" id="name" placeholder="Nom" required />

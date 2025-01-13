@@ -37,16 +37,17 @@
     width: 100vw;
     height: 14vh;
     /* --clr-purple */
-    background-color: rgba(147, 51, 234, .3);
+    background-color: var(--clr-transparent-purple-3);
 }
 
 .contact__syle-form {
-    display: flex;
+    display: block;
     position: absolute;
     top: 20px;
     left: 16px;
     min-width: 320px;
-    backdrop-filter: blur(20px);
+    background-color: var(--clr-slate950);
+    backdrop-filter: blur(100px);
     box-shadow: 4px 4px 15px var(--clr-slate200);
     font-size: var(--size-sm);
     border-radius: 6px;
@@ -55,10 +56,7 @@
 .contact__contact-form {
     margin: 1rem;
     padding: 1rem .4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 
 .contact__name,
@@ -80,14 +78,23 @@
 .contact__send-input {
     font-size: var(--size-sm);
     padding: .4rem;
-    background: rgba(147, 51, 234, .08);
+    background: var(--clr-transparent-purple-1);
     color: var(--clr-light);
     border: none;
-    box-shadow: inset -1px -1px 0 rgba(147, 51, 234, .5),
-        inset -2px -2px 0 rgba(147, 51, 234, .5),
-        inset -2px -3px 0px rgba(147, 51, 234, .5);
+    box-shadow: inset -1px -1px 0 var(--clr-transparent-purple-5),
+        inset -2px -2px 0 var(--clr-transparent-purple-5),
+        inset -2px -3px 0px var(--clr-transparent-purple-5);
     border-radius: 4px;
 }
+
+.contact__send-input {
+    margin: auto;
+}
+
+.contact__contact-input {
+    width: 100%;
+}
+
 
 .contact__contact-input:focus {
     outline: none;
@@ -95,13 +102,13 @@
 }
 
 .contact__send-input {
-    background: linear-gradient(to right, rgba(147, 51, 234, .1) 0%, var(--clr-purple) 60%, rgba(147, 51, 234, .1) 100%);
+    background: linear-gradient(to right, var(--clr-transparent-purple-1) 0%, var(--clr-purple) 60%, var(--clr-transparent-purple-1) 100%);
 }
 
 .contact__send-input:active,
 .contact__send-input:focus {
-    background: linear-gradient(to right, rgba(147, 51, 234, .8) 0%, var(--clr-dark) 60%, rgba(147, 51, 234, .8) 100%);
-    box-shadow: 2px 3px 20px rgba(147, 51, 234, .8);
+    background: linear-gradient(to right, var(--clr-transparent-purple-5) 0%, var(--clr-dark) 60%, var(--clr-transparent-purple-5) 100%);
+    box-shadow: 2px 3px 20px var(--clr-transparent-purple-5);
 }
 
 /* ----- Media query  ----- */
@@ -177,8 +184,7 @@
 
     .contact__name,
     .contact__mail,
-    .contact__message,
-    .contact__send-input {
+    .contact__message {
         margin: 1rem;
     }
 
@@ -192,6 +198,11 @@
 @media (min-width: 768px) {
     .contact__title {
         font-size: var(--size-7xl);
+    }
+
+    .contact__syle-form {
+        font-size: var(--size-xl);
+        min-width: 35rem;
     }
 
     .contact__hook {
@@ -220,6 +231,7 @@
 
     .contact__syle-form {
         font-size: var(--size-xl);
+        min-width: 40rem;
     }
 
     .contact__contact-input,

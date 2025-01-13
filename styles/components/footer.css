@@ -13,7 +13,7 @@
     left: 0;
     content: "";
     width: 100%;
-    height: calc(100% - 40px);
+    height: calc(100% - var(--footer-height-container));
     background-image: linear-gradient(to right,
             var(--clr-blue),
             var(--clr-red600));
@@ -27,9 +27,13 @@
     stroke: var(--clr-blue);
     width: 50px;
     height: auto;
-    background-color: var(--clr-transparent-grey);
+    background-color: var(--clr-transparent-grey-btn);
     border-radius: 50%;
     transition: all .4s;
+}
+
+.footer__arrow-light {
+    stroke: none;
 }
 
 .footer__arrow:hover {

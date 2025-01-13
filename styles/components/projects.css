@@ -38,6 +38,7 @@
     border-bottom: 1px solid black;
     border-right: 1px solid black;
     box-shadow: 1px 2px 4px var(--clr-dark);
+    object-position: left top;
 }
 
 .projects__card__descr-wrapper {

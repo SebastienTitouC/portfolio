@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     min-height: 90vh;
+    margin-bottom: 2rem;
 }
 
 .hero__title_description {
@@ -54,6 +55,12 @@
     animation: entrie 2s ease-in-out both;
     z-index: -1;
     filter: drop-shadow(-80px 100px 100px var(--clr-purple));
+    --last-opacity: .5;
+}
+
+.hero__img-light {
+    filter: none;
+    --last-opacity: 1;
 }
 
 @keyframes entrie {
@@ -73,7 +80,7 @@
     }
 
     100% {
-        opacity: .5;
+        opacity: var(--last-opacity);
         transform: translateX(90px);
     }
 }
@@ -113,7 +120,7 @@
 
         80%,
         100% {
-            opacity: .5;
+            opacity: var(--last-opacity);
             transform: translateX(10px);
         }
     }
@@ -150,6 +157,10 @@
 @media (min-width: 768px) {}
 
 @media (min-width: 1024px) {
+    .hero {
+        margin-bottom: 4rem;
+    }
+
     .hero__title_description {
         margin-top: 0;
     }

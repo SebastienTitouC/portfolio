@@ -1,7 +1,7 @@
 const changeCardVisibility = () => {
     function onVisibilityChange(entries, observer) {
         entries.forEach(entry => {
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.95) {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.98) {
                 entry.target.classList.remove('invisible');
             } else {
                 entry.target.classList.add('invisible');
@@ -12,7 +12,7 @@ const changeCardVisibility = () => {
     const observer = new IntersectionObserver(onVisibilityChange, {
         root: null,
         rootMargin: '0px',
-        threshold: .95,
+        threshold: [.95, 1],
     });
 
     const cards = document.querySelectorAll('.projects__card');
