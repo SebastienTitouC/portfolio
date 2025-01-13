@@ -50,4 +50,15 @@ const changeTheme = () => {
     );
 };
 
-export default changeTheme;
+const infoThemeMode = () => {
+    const infoContainer = document.querySelector('.aside__info-container')
+
+    if (!localStorage.getItem('theme')) {
+        setTimeout(() => {
+            infoContainer.classList.add('aside__info-container-show')
+            setTimeout(() => { infoContainer.classList.remove('aside__info-container-show') }, 5000)
+        }, 7000)
+    }
+}
+
+export { changeTheme, infoThemeMode };
