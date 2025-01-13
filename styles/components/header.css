@@ -20,7 +20,7 @@
 }
 
 .header__hidden {
-    top: -44px;
+    top: -40px;
 }
 
 .header__hidden::before {
