@@ -15,6 +15,7 @@ import mobileNav from './utils/mobile-nav';
 import writeSubFunction from './utils/typewriter'
 import { changeCardVisibility, addDelayToSkill } from './utils/projects'
 import { changeTheme, infoThemeMode } from './utils/dark-mode'
+import sendEmail from './utils/contact'
 
 mobileNav();
 writeSubFunction();
@@ -22,3 +23,4 @@ changeCardVisibility();
 addDelayToSkill();
 changeTheme();
 infoThemeMode();
+sendEmail();

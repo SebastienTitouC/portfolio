@@ -3,10 +3,20 @@ import cors from 'cors';
 import nodemailer from "nodemailer"
 import 'dotenv/config'
 
+import rateLimit from 'express-rate-limit';
+
 const app = express();
 const port = process.env.PORT || 80;
 
+type EmailMessage = { name: string, email: string, message: string };
+
 /* nodemailer */
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 5, // Limite chaque IP à 100 requêtes par fenêtre
+    message: 'Trop de requêtes, veuillez réessayer plus tard'
+});
+
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
@@ -18,7 +28,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-async function sendMyMail(email, name, message) {
+async function sendMyMail(email: string, name: string, message: string) {
     const newMessage = {
         from: email,
         to: process.env.EMAIL,
@@ -30,24 +40,25 @@ async function sendMyMail(email, name, message) {
 }
 
 /* Serveur */
+app.use(limiter);
+
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN, // Autoriser seulement les requêtes venant de cette origine
-    methods: ['GET', 'POST'], // Autoriser seulement les méthodes GET et POST (tu peux ajouter d'autres méthodes si nécessaire)
-    allowedHeaders: ['Content-Type'], // Autoriser certains en-têtes (par défaut c'est Content-Type)
+    origin: process.env.ALLOWED_ORIGIN,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
 }));
 
 
 app.use(express.json());
 app.get('/', async (req, res) => {
-    console.log("Test de focntionnement du serveur")
+    console.log("Test de fonctionnement du serveur")
     res.send("<h1>Hello word</h1>").end()
 }
 )
 
-app.post('/sendMail', (req, res) => {
+const sendEmailCallback = async (req: any, res: any) => {
+    console.log("Send mail recu")
     try {
-        console.log("Send mail recu")
-
         const { name, email, message } = req.body;
         if (!name || !email || !message) {
             return res.status(400).json({ message: "Des champs sont manquants" });
@@ -56,17 +67,25 @@ app.post('/sendMail', (req, res) => {
         if (process.env.EMAIL === undefined) {
             return res.status(400).json({ message: "Problème d'environnement sur le serveur" });
         }
-        const successInfo = sendMyMail(email, name, message);
+        const successInfo = await sendMyMail(email, name, message);
 
-        res.status(200).json({ message: "OK" });
-        /* res.status(400).json({ message: "Erreur " + successInfo.rejected }); // Action échouée */
+        if (successInfo && successInfo.accepted && successInfo.accepted.length > 0) {
+            return res.status(200).json({ message: "Email envoyé avec succès" });
+        } else {
+            // Si l'email n'a pas pu être envoyé
+            return res.status(400).json({ message: "Erreur lors de l'envoi de l'email", error: successInfo.rejected });
+        }
+
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Erreur serveur" });
     }
-});
+}
+
+app.post('/sendMail', sendEmailCallback);
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
