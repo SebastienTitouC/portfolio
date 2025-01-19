@@ -14,8 +14,7 @@ const sendEmail = async () => {
 
         try {
             // Envoi de la requête POST vers le serveur Node.js
-            console.log(process.env.SERVER_TARGET)
-            const response = await fetch(process.env.SERVER_TARGET, {
+            const response = await fetch("https://my-server-cyan.vercel.app/sendMail", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json', // Si tu envoies des données JSON
