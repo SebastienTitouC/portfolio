@@ -45,19 +45,19 @@ function sendMyMail(email, name, message) {
 /* Serveur */
 app.use(limiter);
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN, // Autoriser seulement les requêtes venant de cette origine
-    methods: ['GET', 'POST'], // Autoriser seulement les méthodes GET et POST (tu peux ajouter d'autres méthodes si nécessaire)
-    allowedHeaders: ['Content-Type'], // Autoriser certains en-têtes (par défaut c'est Content-Type)
+    origin: process.env.ALLOWED_ORIGIN,
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
 }));
 app.use(express.json());
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("Test de focntionnement du serveur");
+    console.log("Test de fonctionnement du serveur");
+    console.log(process.env.ALLOWED_ORIGIN)
     res.send("<h1>Hello word</h1>").end();
 }));
 const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Send mail recu");
     try {
-        console.log("Send mail recu: " + req.body);
         const { name, email, message } = req.body;
         if (!name || !email || !message) {
             return res.status(400).json({ message: "Des champs sont manquants" });
@@ -83,3 +83,4 @@ app.post('/sendMail', sendEmailCallback);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+export default app;
