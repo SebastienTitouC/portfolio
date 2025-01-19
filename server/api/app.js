@@ -43,6 +43,7 @@ function sendMyMail(email, name, message) {
     });
 }
 /* Serveur */
+app.set('trust proxy', 1);
 app.use(limiter);
 app.use(cors({
     origin: process.env.ALLOWED_ORIGIN,
