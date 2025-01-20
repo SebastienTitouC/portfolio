@@ -65,12 +65,21 @@ const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, functi
     console.log("Send mail recu");
     try {
         let { n, e, m, h } = req.body;
+        console.log('n: ' + n)
+        console.log('e: ' + e)
+        console.log('m: ' + m)
+        console.log('h: ' + h)
+        console.log('key: ' + process.env.VITE_KEY)
+
         if (!n || !e || !m || h) {
+            console.log(n + '  ' + e + '  ' + m + '  ' + h + '  ')
             return res.status(400).json({ message: "Des champs sont manquants" });
         }
+
         if (process.env.VITE_KEY) {
             e = yield decryptData(e, process.env.VITE_KEY, n);
             m = yield decryptData(m, process.env.VITE_KEY, n);
+            console.log("Decoded: " + e + '  ' + m)
         }
         else {
             return res.status(400).json({ message: "Le décryptage du message a échoué. Contactez le gérant du serveur" });
@@ -78,9 +87,11 @@ const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (!validateEmail(e)) {
             return res.status(400).json({ message: "Email non valide" });
         }
+        console.log("email emitter valide")
         if (process.env.EMAIL === undefined) {
             return res.status(400).json({ message: "Problème d'environnement sur le serveur" });
         }
+        console.log("email sender valide")
         const successInfo = yield sendMyMail(e, n, m);
         if (successInfo && successInfo.accepted && successInfo.accepted.length > 0) {
             return res.status(200).json({ message: "Email envoyé avec succès" });
@@ -97,6 +108,7 @@ const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, functi
 });
 app.post('/sendMail', sendEmailCallback);
 app.listen(port, () => {
+    console.log(process.env.VITE_KEY)
     console.log(`Server is running on http://localhost:${port}`);
 });
 export default app;
