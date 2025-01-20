@@ -19,7 +19,11 @@ async function decryptData(encryptedData, password, salt) {
         const data = encryptedDataBuff.slice(12);
         const passwordKey = await getPasswordKey(password);
         const aesKey = await deriveKey(passwordKey, enc.encode(salt), ["decrypt"]);
+        console.log('encryptedData ' + encryptedData);
+        console.log('password ' + password);
+        console.log('salt ' + salt);
         const decryptedContent = await crypto.subtle.decrypt({ name: "AES-GCM", iv: iv, }, aesKey, data);
+        console.log('ic' + decryptedContent);
         return dec.decode(decryptedContent);
     }
     catch (e) {

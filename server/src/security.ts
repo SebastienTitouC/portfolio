@@ -16,7 +16,7 @@ const getPasswordKey = (password: string) =>
         "deriveKey",
     ]);
 
-const deriveKey = (passwordKey: CryptoKey, salt: Uint8Array, keyUsage: Iterable<KeyUsage>) =>
+const deriveKey = (passwordKey: CryptoKey, salt: Uint8Array, keyUsage: KeyUsage[]) =>
     crypto.subtle.deriveKey(
         {
             name: "PBKDF2",
@@ -37,11 +37,15 @@ async function decryptData(encryptedData: string, password: string, salt: string
         const data = encryptedDataBuff.slice(12);
         const passwordKey = await getPasswordKey(password);
         const aesKey = await deriveKey(passwordKey, enc.encode(salt), ["decrypt"]);
+        console.log('encryptedData ' + encryptedData)
+        console.log('password ' + password)
+        console.log('salt ' + salt)
         const decryptedContent = await crypto.subtle.decrypt(
             { name: "AES-GCM", iv: iv, },
             aesKey,
             data
         );
+        console.log('ic' + decryptedContent)
         return dec.decode(decryptedContent);
     } catch (e) {
         console.log(`Error - ${e}`);
