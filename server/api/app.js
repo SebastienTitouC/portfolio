@@ -12,6 +12,7 @@ import cors from 'cors';
 import nodemailer from "nodemailer";
 import 'dotenv/config';
 import rateLimit from 'express-rate-limit';
+import { decryptData } from './security.js';
 const app = express();
 const port = process.env.PORT || 80;
 /* nodemailer */
@@ -53,20 +54,34 @@ app.use(cors({
 app.use(express.json());
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Test de fonctionnement du serveur");
-    console.log(process.env.ALLOWED_ORIGIN)
     res.send("<h1>Hello word</h1>").end();
 }));
+// Function to validate email address format
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+}
 const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("Send mail recu");
     try {
-        const { name, email, message } = req.body;
-        if (!name || !email || !message) {
+        let { n, e, m, h } = req.body;
+        if (!n || !e || !m || h) {
             return res.status(400).json({ message: "Des champs sont manquants" });
+        }
+        if (process.env.VITE_KEY) {
+            e = yield decryptData(e, process.env.VITE_KEY, n);
+            m = yield decryptData(m, process.env.VITE_KEY, n);
+        }
+        else {
+            return res.status(400).json({ message: "Le décryptage du message a échoué. Contactez le gérant du serveur" });
+        }
+        if (!validateEmail(e)) {
+            return res.status(400).json({ message: "Email non valide" });
         }
         if (process.env.EMAIL === undefined) {
             return res.status(400).json({ message: "Problème d'environnement sur le serveur" });
         }
-        const successInfo = yield sendMyMail(email, name, message);
+        const successInfo = yield sendMyMail(e, n, m);
         if (successInfo && successInfo.accepted && successInfo.accepted.length > 0) {
             return res.status(200).json({ message: "Email envoyé avec succès" });
         }

@@ -520,9 +520,13 @@
                 <input class="contact__contact-input" type="email" name="email" id="email" placeholder="Email"
                   required />
               </div>
+              <div class="contact__honeypot">
+                <label for="secondEmail">Votre adresse email * </label>
+                <input type="email" name="secondEmail" id="secondEmail" />
+              </div>
               <div class="contact__message">
                 <label class="contact__contact-label" for="message">Votre message * </label>
-                <textarea class="contact__contact-input" name="message" id="message" rows="8"
+                <textarea class="contact__contact-input" name="message" id="message" rows="8" maxlength="800"
                   placeholder="Une question ? Un projet ? N'hésitez pas !"></textarea>
               </div>
               <div class="contact__send">

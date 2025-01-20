@@ -111,6 +111,11 @@
     box-shadow: 2px 3px 20px var(--clr-transparent-purple-5);
 }
 
+.contact__honeypot {
+    display: none;
+    visibility: hidden;
+}
+
 /* ----- Media query  ----- */
 @media (min-width: 475px) {
     .contact__container {

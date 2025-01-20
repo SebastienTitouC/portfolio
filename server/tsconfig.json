@@ -102,6 +102,7 @@
   },
   "files": [
     "./src/index.ts",
-    "./src/app.ts"
+    "./src/app.ts",
+    "./src/security.ts",
   ]
 }

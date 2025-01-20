@@ -1,42 +1,67 @@
+import { encryptData, decryptData } from '../utils/security'
+
 const sendEmail = async () => {
     const contactForm = document.querySelector('.contact__contact-form')
+
+    // Function to validate email address format
+    function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     // Handlers
     const submitHandler = async (event) => {
         event.preventDefault()
         console.log("Formulaire soumis")
-
-        const contactData = {
-            name: event.target[0].value,
-            email: event.target[1].value,
-            message: event.target[2].value,
+        if (document.querySelector('.contact__honeypot input').value != "") {
+            event.target.closest('form').reset()
+            return;
         }
 
-        try {
-            // Envoi de la requête POST vers le serveur Node.js
-            const response = await fetch("https://my-server-cyan.vercel.app/sendMail", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json', // Si tu envoies des données JSON
-                },
-                body: JSON.stringify(contactData), // Corps de la requête
-            });
 
-            // Traitement de la réponse
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Réponse du serveur:", data);
-                alert('Votre message a bien été envoyé. Merci ' + contactData.name);
-            } else {
-                const errorData = await response.json();
-                console.error("Erreur du serveur:", errorData.message);
-                alert('Erreur: ' + errorData.message);
+        let contactData = {
+            n: event.target[0].value,
+            e: event.target[1].value,
+            m: event.target[3].value,
+            h: ""
+        }
+
+        if (validateEmail(contactData.e)) {
+            console.log("Email valide ")
+
+            try {
+                contactData.e = await encryptData(contactData.e, import.meta.env.VITE_KEY, contactData.n)
+                contactData.m = await encryptData(contactData.m, import.meta.env.VITE_KEY, contactData.n)
+            } catch (error) {
+                alert('Le cryptage du message a échoué. Veuillez tenter à nouveau.');
             }
-        } catch (error) {
-            console.error("Erreur de requête:", error);
-            alert('Erreur lors de la communication avec le serveur.');
-        }
 
+            try {
+                // Envoi de la requête POST vers le serveur Node.js
+                const response = await fetch("https://my-server-cyan.vercel.app/sendMail", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', },
+                    body: JSON.stringify(contactData),
+                });
+
+                // Traitement de la réponse
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log("Réponse du serveur:", data);
+                    alert('Votre message a bien été envoyé. Merci ' + contactData.n);
+                } else {
+                    const errorData = await response.json();
+                    console.error("Erreur du serveur:", errorData.message);
+                    alert('Erreur: ' + errorData.message);
+                }
+            } catch (error) {
+                console.error("Erreur de requête:", error);
+                alert('Erreur lors de la communication avec le serveur.');
+            }
+        } else {
+            console.log("Email invalide ")
+        }
+        event.target.closest('form').reset()
     }
 
     // Events

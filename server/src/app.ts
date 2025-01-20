@@ -2,13 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import nodemailer from "nodemailer"
 import 'dotenv/config'
-
 import rateLimit from 'express-rate-limit';
+import { decryptData } from './security.js'
 
 const app = express();
 const port = process.env.PORT || 80;
-
-type EmailMessage = { name: string, email: string, message: string };
 
 /* nodemailer */
 const limiter = rateLimit({
@@ -40,6 +38,7 @@ async function sendMyMail(email: string, name: string, message: string) {
 }
 
 /* Serveur */
+app.set('trust proxy', 1);
 app.use(limiter);
 
 app.use(cors({
@@ -56,18 +55,38 @@ app.get('/', async (req, res) => {
 }
 )
 
+// Function to validate email address format
+function validateEmail(email: string) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+}
+
 const sendEmailCallback = async (req: any, res: any) => {
     console.log("Send mail recu")
     try {
-        const { name, email, message } = req.body;
-        if (!name || !email || !message) {
+
+        let { n, e, m, h } = req.body;
+
+        if (!n || !e || !m || h) {
             return res.status(400).json({ message: "Des champs sont manquants" });
+        }
+        if (process.env.VITE_KEY) {
+            e = await decryptData(e, process.env.VITE_KEY, n)
+            m = await decryptData(m, process.env.VITE_KEY, n)
+        }
+        else {
+            return res.status(400).json({ message: "Le décryptage du message a échoué. Contactez le gérant du serveur" });
+
+        }
+
+        if (!validateEmail(e)) {
+            return res.status(400).json({ message: "Email non valide" });
         }
 
         if (process.env.EMAIL === undefined) {
             return res.status(400).json({ message: "Problème d'environnement sur le serveur" });
         }
-        const successInfo = await sendMyMail(email, name, message);
+        const successInfo = await sendMyMail(e, n, m);
 
         if (successInfo && successInfo.accepted && successInfo.accepted.length > 0) {
             return res.status(200).json({ message: "Email envoyé avec succès" });
