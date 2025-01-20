@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import express from 'express';
 import cors from 'cors';
 import nodemailer from "nodemailer";
@@ -31,17 +22,15 @@ const transporter = nodemailer.createTransport({
         pass: process.env.API_KEY,
     },
 });
-function sendMyMail(email, name, message) {
-    return __awaiter(this, void 0, void 0, function* () {
-        const newMessage = {
-            from: email,
-            to: process.env.EMAIL,
-            subject: "Nouveau message de " + name,
-            text: '- Mail : ' + email + '\n  - Message : ' + message,
-        };
-        const info = yield transporter.sendMail(newMessage);
-        return info;
-    });
+async function sendMyMail(email, name, message) {
+    const newMessage = {
+        from: email,
+        to: process.env.EMAIL,
+        subject: "Nouveau message de " + name,
+        text: '- Mail : ' + email + '\n  - Message : ' + message,
+    };
+    const info = await transporter.sendMail(newMessage);
+    return info;
 }
 /* Serveur */
 app.set('trust proxy', 1);
@@ -52,34 +41,25 @@ app.use(cors({
     allowedHeaders: ['Content-Type'],
 }));
 app.use(express.json());
-app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get('/', async (req, res) => {
     console.log("Test de fonctionnement du serveur");
     res.send("<h1>Hello word</h1>").end();
-}));
+});
 // Function to validate email address format
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
 }
-const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const sendEmailCallback = async (req, res) => {
     console.log("Send mail recu");
     try {
         let { n, e, m, h } = req.body;
-        console.log('n: ' + n)
-        console.log('e: ' + e)
-        console.log('m: ' + m)
-        console.log('h: ' + h)
-        console.log('key: ' + process.env.VITE_KEY)
-
         if (!n || !e || !m || h) {
-            console.log(n + '  ' + e + '  ' + m + '  ' + h + '  ')
             return res.status(400).json({ message: "Des champs sont manquants" });
         }
-
         if (process.env.VITE_KEY) {
-            e = yield decryptData(e, process.env.VITE_KEY, n);
-            m = yield decryptData(m, process.env.VITE_KEY, n);
-            console.log("Decoded: " + e + '  ' + m)
+            e = await decryptData(e, process.env.VITE_KEY, n);
+            m = await decryptData(m, process.env.VITE_KEY, n);
         }
         else {
             return res.status(400).json({ message: "Le décryptage du message a échoué. Contactez le gérant du serveur" });
@@ -87,12 +67,10 @@ const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, functi
         if (!validateEmail(e)) {
             return res.status(400).json({ message: "Email non valide" });
         }
-        console.log("email emitter valide")
         if (process.env.EMAIL === undefined) {
             return res.status(400).json({ message: "Problème d'environnement sur le serveur" });
         }
-        console.log("email sender valide")
-        const successInfo = yield sendMyMail(e, n, m);
+        const successInfo = await sendMyMail(e, n, m);
         if (successInfo && successInfo.accepted && successInfo.accepted.length > 0) {
             return res.status(200).json({ message: "Email envoyé avec succès" });
         }
@@ -105,10 +83,9 @@ const sendEmailCallback = (req, res) => __awaiter(void 0, void 0, void 0, functi
         console.error(error);
         res.status(500).json({ message: "Erreur serveur" });
     }
-});
+};
 app.post('/sendMail', sendEmailCallback);
 app.listen(port, () => {
-    console.log(process.env.VITE_KEY)
     console.log(`Server is running on http://localhost:${port}`);
 });
 export default app;
