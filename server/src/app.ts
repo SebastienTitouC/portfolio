@@ -1,19 +1,17 @@
 import express from 'express';
-import cors from 'cors';
 import nodemailer from "nodemailer"
 import 'dotenv/config'
 import rateLimit from 'express-rate-limit';
+import path from 'path'
+import { fileURLToPath } from 'url';
 
-const app = express();
-const port = process.env.PORT || 80;
+import { ItemController } from './article.js'
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(path.join(__filename, '..'));
 
 /* nodemailer */
-const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // Limite chaque IP à 100 requêtes par fenêtre
-    message: 'Trop de requêtes, veuillez réessayer plus tard'
-});
-
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
@@ -25,6 +23,12 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+// Function to validate email address format
+function validateEmail(email: string) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+}
+
 async function sendMyMail(email: string, name: string, message: string) {
     const newMessage = {
         from: email,
@@ -34,30 +38,6 @@ async function sendMyMail(email: string, name: string, message: string) {
     }
     const info = await transporter.sendMail(newMessage);
     return info
-}
-
-/* Serveur */
-app.set('trust proxy', 1);
-app.use(limiter);
-
-app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN,
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-}));
-
-
-app.use(express.json());
-app.get('/', async (req, res) => {
-    console.log("Test de fonctionnement du serveur")
-    res.send("<h1>Hello word</h1>").end()
-}
-)
-
-// Function to validate email address format
-function validateEmail(email: string) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
 }
 
 const sendEmailCallback = async (req: any, res: any) => {
@@ -92,8 +72,69 @@ const sendEmailCallback = async (req: any, res: any) => {
     }
 }
 
+/* Auth */
+const authentication = (req: any, res: any, next: any) => {
+    console.log("Auth ")
+    const authheader = req.headers.authorization;
+    if (!authheader) {
+        res.setHeader('WWW-Authenticate', 'Basic realm="mon site à moi", charset="UTF-8"');
+
+        res.status(401).end();
+    }
+    else {
+        // extract credentials info by removing leading 'Basic ' and decoding from Base64
+        const credentials = Buffer.from(authheader.split(' ')[1], 'base64');
+        const [user, password] = credentials.toString().toLowerCase().split(':');
+        if (user === process.env.USER && password === process.env.PASSWORD) {
+            //authorization granted
+            // let's continue
+            next();
+        } else {
+            // Bad user name or password
+            res.setHeader('WWW-Authenticate', 'Basic realm="mon site à moi", charset="UTF-8"');
+            res.status(401).end();
+        }
+    }
+}
+
+/* RateLimit */
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limite à 100 requêtes
+    message: 'Trop de requêtes (>100), réessayez dans quelques minutes.',
+});
+
+const mailLimiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 5, // Limite à 5 requêtes
+    message: 'Trop de tentatives (>5), réessayez dans quelques minutes.',
+});
+
+/* Serveur */
+const app = express();
+const port = process.env.PORT || 80;
+app.set('trust proxy', 1);
+app.use("/api", apiLimiter);
+app.use("/sendMail", mailLimiter);
+app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+/* routes */
+app.get('/', async (req, res) => {
+    console.log("Test de fonctionnement du serveur")
+    console.log(__dirname)
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+})
+app.get('/info', async (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'info.html'));
+})
+
 app.post('/sendMail', sendEmailCallback);
 
+const articles = new ItemController(app);
+
+/* Start */
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
