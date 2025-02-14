@@ -30,7 +30,7 @@ const sendEmail = async () => {
 
             try {
                 // Envoi de la requête POST vers le serveur Node.js
-                const response = await fetch("https://my-server-cyan.vercel.app/sendMail", {
+                const response = await fetch("https://portfolio-stc.vercel.app/sendMail", {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json', },
                     body: JSON.stringify(contactData),
