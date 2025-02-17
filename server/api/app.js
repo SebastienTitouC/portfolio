@@ -4,6 +4,7 @@ import 'dotenv/config';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 import { ItemController } from './article.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(path.join(__filename, '..'));
@@ -98,6 +99,11 @@ const mailLimiter = rateLimit({
 /* Serveur */
 const app = express();
 const port = process.env.PORT || 80;
+const corsOptions = {
+    origin: 'https://stc-dev.fr',
+    allowedHeaders: ['Content-Type', 'Authorization'], // Les en-têtes autorisés
+};
+app.options('/sendMail', cors(corsOptions));
 app.set('trust proxy', 1);
 app.use("/api", apiLimiter);
 app.use("/sendMail", mailLimiter);
@@ -112,7 +118,7 @@ app.get('/', async (req, res) => {
 app.get('/info', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'info.html'));
 });
-app.post('/sendMail', sendEmailCallback);
+app.post('/sendMail', cors(corsOptions), sendEmailCallback);
 const articles = new ItemController(app);
 /* Start */
 app.listen(port, () => {
