@@ -4,7 +4,7 @@ import 'dotenv/config'
 import rateLimit from 'express-rate-limit';
 import path from 'path'
 import { fileURLToPath } from 'url';
-
+import cors from 'cors'
 import { ItemController } from './article.js'
 
 
@@ -130,7 +130,13 @@ app.get('/info', async (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'info.html'));
 })
 
-app.post('/sendMail', sendEmailCallback);
+const corsOptions = {
+    origin: 'https://stc-dev.fr/',
+    methods: ['POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'], // Les en-têtes autorisés
+};
+app.use(cors(corsOptions));
+app.post('/sendMail', cors(corsOptions), sendEmailCallback);
 
 const articles = new ItemController(app);
 
